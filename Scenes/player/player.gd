@@ -18,6 +18,7 @@ var t_bob = 0.0
 
 signal playerHit
 
+var blockState = false 
 
 @export var health : int = 20.0
 
@@ -111,9 +112,17 @@ func _headbob(time) -> Vector3:
 
 
 func hit(dir):
+	if blockState == true:
+		print("blocked")
+	else:
+		print("not blocked")
+	
 	if animationPlayer.current_animation == "idle":
 		emit_signal("playerHit")
 		velocity += dir * hitStagger
+	if animationPlayer.current_animation == "block":
+		pass
+
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "attack":
@@ -122,8 +131,11 @@ func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "block":
 		animationPlayer.play("idle")
 
+func blockStart():
+	blockState = true
 
-
+func blockEnd():
+	blockState = false
 
 func _on_hitbox_body_entered(body):
 	print(typeof(body))
