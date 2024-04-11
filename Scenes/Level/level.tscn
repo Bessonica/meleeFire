@@ -1,0 +1,84 @@
+[gd_scene load_steps=11 format=3 uid="uid://dhup2gowdlh8j"]
+
+[ext_resource type="Script" path="res://Scenes/Level/level.gd" id="1_7tijt"]
+[ext_resource type="Texture2D" uid="uid://dge3iqvg3vuam" path="res://Res/kenney/PNG/Dark/texture_03.png" id="1_86hxg"]
+[ext_resource type="PackedScene" uid="uid://c0kj72s04nlbr" path="res://Scenes/player/player.tscn" id="1_gwobp"]
+[ext_resource type="PackedScene" uid="uid://ctx0471wiosmh" path="res://Scenes/Enemy/zombie.tscn" id="3_7ho3i"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lr8n4"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_wk50q"]
+sky_material = SubResource("ProceduralSkyMaterial_lr8n4")
+
+[sub_resource type="Environment" id="Environment_fo0cd"]
+background_mode = 2
+sky = SubResource("Sky_wk50q")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_85cn1"]
+vertices = PackedVector3Array(-11.4053, 0.25, -10.7499, -11.4053, 0.25, 16.5001, 19.5947, 0.25, 16.5001, 19.5947, 0.25, -10.7499)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+agent_max_slope = 60.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t3nu8"]
+albedo_texture = ExtResource("1_86hxg")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pp6qf"]
+albedo_texture = ExtResource("1_86hxg")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_7tijt")
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
+environment = SubResource("Environment_fo0cd")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 0.644951, 0.764224, 0, -0.764224, 0.644951, 14.5216, 10.3715, 0)
+
+[node name="Player" parent="World" instance=ExtResource("1_gwobp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.20037, 0)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="World"]
+navigation_mesh = SubResource("NavigationMesh_85cn1")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="World/NavigationRegion3D"]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="World/NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.11706, -0.331543, 2.91298)
+material_override = SubResource("StandardMaterial3D_t3nu8")
+size = Vector3(32.0448, 0.336914, 28.3258)
+material = SubResource("StandardMaterial3D_pp6qf")
+
+[node name="CharacterBody3D2" parent="World" instance=ExtResource("3_7ho3i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.364633, -5)
+playerPath = NodePath("../Player")
+
+[node name="Ui" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="ColorRect" type="ColorRect" parent="Ui"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0.772549, 0.27451, 0.321569, 0.439216)
+
+[connection signal="playerHit" from="World/Player" to="." method="_on_player_player_hit"]
