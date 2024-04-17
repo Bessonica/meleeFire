@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://dhup2gowdlh8j"]
+[gd_scene load_steps=12 format=3 uid="uid://dhup2gowdlh8j"]
 
 [ext_resource type="Script" path="res://Scenes/Level/level.gd" id="1_7tijt"]
 [ext_resource type="Texture2D" uid="uid://dge3iqvg3vuam" path="res://Res/kenney/PNG/Dark/texture_03.png" id="1_86hxg"]
 [ext_resource type="PackedScene" uid="uid://c0kj72s04nlbr" path="res://Scenes/player/player.tscn" id="1_gwobp"]
 [ext_resource type="PackedScene" uid="uid://ctx0471wiosmh" path="res://Scenes/Enemy/zombie.tscn" id="3_7ho3i"]
+[ext_resource type="PackedScene" uid="uid://clwb8spon5l8t" path="res://Scenes/Ball Spawner/ball_spawner.tscn" id="5_myvgy"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lr8n4"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -60,6 +61,9 @@ material = SubResource("StandardMaterial3D_pp6qf")
 [node name="CharacterBody3D2" parent="World" instance=ExtResource("3_7ho3i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.364633, -5)
 playerPath = NodePath("../Player")
+
+[node name="BallSpawner" parent="World" instance=ExtResource("5_myvgy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.65714, 1.70442, 7.91895)
 
 [node name="Ui" type="Control" parent="."]
 layout_mode = 3

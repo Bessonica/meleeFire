@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bm62q5vum84h0"]
+
+[ext_resource type="Script" path="res://Scenes/Ball/ball.gd" id="1_sd7ia"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_4omnx"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_0fxtn"]
+
+[node name="Ball" type="Area3D"]
+collision_layer = 8
+script = ExtResource("1_sd7ia")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_4omnx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_0fxtn")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

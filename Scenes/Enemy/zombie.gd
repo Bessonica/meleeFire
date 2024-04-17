@@ -9,6 +9,7 @@ var stateMachine
 const colorDefault = "ec958c"
 const colorRed = "d73643"
 
+@export var activated : bool
 @export var playerPath : NodePath
 @export var health : int = 10
 
@@ -25,6 +26,10 @@ func _ready():
 	stateMachine = animTree.get("parameters/playback")
 
 func _process(delta):
+	if !activated:
+		return
+	
+	
 	velocity = Vector3.ZERO
 	
 	match stateMachine.get_current_node():

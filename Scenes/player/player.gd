@@ -26,6 +26,8 @@ var blockState = false
 @onready var camera = $Head/Camera3D
 @onready var animationPlayer = $AnimationPlayer
 @onready var hitbox = $"Head/Camera3D/WeaponPivot/Weapon mesh/Hitbox"
+@onready var cameraRaycast = $Head/Camera3D/RayCast3D
+
 
 const BASE_FOV = 75.0
 const FOV_CHANGE = 1.25
@@ -140,3 +142,18 @@ func blockEnd():
 func _on_hitbox_body_entered(body):
 	print(typeof(body))
 	body.gotHit()
+
+func ballTouched(ball):
+	if blockState == true:
+		var vector = Vector3()
+		vector = cameraRaycast.target_position
+		print(cameraRaycast.target_position)
+		#var from = camera.project_ray_origin(camera.position)
+		print(camera.position)
+		#var to = from + camera.project_ray_normal(camera.position)
+		var newVector = - camera.get_global_transform().basis.z
+		ball.changeVector(newVector)
+	else:
+		hit(ball.global_position.direction_to(self.global_position))
+	
+	

@@ -207,6 +207,9 @@ monitoring = false
 transform = Transform3D(1.2, -9.74995e-10, -9.55788e-10, 9.74995e-10, 1.2, 7.49069e-17, 9.55788e-10, -7.56835e-17, 1.2, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_4buop")
 
+[node name="RayCast3D" type="RayCast3D" parent="Head/Camera3D"]
+target_position = Vector3(0, 0, -1)
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_fq1fu")
 
