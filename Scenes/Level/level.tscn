@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Scenes/Level/level.gd" id="1_7tijt"]
 [ext_resource type="Texture2D" uid="uid://dge3iqvg3vuam" path="res://Res/kenney/PNG/Dark/texture_03.png" id="1_86hxg"]
-[ext_resource type="PackedScene" uid="uid://c0kj72s04nlbr" path="res://Scenes/player/player.tscn" id="1_gwobp"]
 [ext_resource type="PackedScene" uid="uid://ctx0471wiosmh" path="res://Scenes/Enemy/zombie.tscn" id="3_7ho3i"]
+[ext_resource type="PackedScene" uid="uid://dfrpdqgyvpwu0" path="res://Scenes/PlayerStateMachine/playerStateMachine.tscn" id="5_8p5v3"]
 [ext_resource type="PackedScene" uid="uid://clwb8spon5l8t" path="res://Scenes/Ball Spawner/ball_spawner.tscn" id="5_myvgy"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lr8n4"]
@@ -43,9 +43,6 @@ environment = SubResource("Environment_fo0cd")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
 transform = Transform3D(1, 0, 0, 0, 0.644951, 0.764224, 0, -0.764224, 0.644951, 14.5216, 10.3715, 0)
 
-[node name="Player" parent="World" instance=ExtResource("1_gwobp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.20037, 0)
-
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="World"]
 navigation_mesh = SubResource("NavigationMesh_85cn1")
 
@@ -58,9 +55,8 @@ material_override = SubResource("StandardMaterial3D_t3nu8")
 size = Vector3(32.0448, 0.336914, 28.3258)
 material = SubResource("StandardMaterial3D_pp6qf")
 
-[node name="CharacterBody3D2" parent="World" instance=ExtResource("3_7ho3i")]
+[node name="Zombie" parent="World" instance=ExtResource("3_7ho3i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.364633, -5)
-playerPath = NodePath("../Player")
 
 [node name="BallSpawner" parent="World" instance=ExtResource("5_myvgy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.65714, 1.70442, 7.91895)
@@ -85,4 +81,5 @@ grow_vertical = 2
 mouse_filter = 1
 color = Color(0.772549, 0.27451, 0.321569, 0.439216)
 
-[connection signal="playerHit" from="World/Player" to="." method="_on_player_player_hit"]
+[node name="PlayerSM" parent="." instance=ExtResource("5_8p5v3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)

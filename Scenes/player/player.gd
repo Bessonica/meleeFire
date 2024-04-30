@@ -72,7 +72,7 @@ func _physics_process(delta):
 			speed = WALK_SPEED
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir = Input.get_vector("moveLeft", "moveRIght", "moveForward", "moveBackward")
+	var input_dir = Input.get_vector("moveLeft", "moveRight", "moveForward", "moveBackward")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 		#if direction:
 			#velocity.x = direction.x * speed
@@ -145,12 +145,6 @@ func _on_hitbox_body_entered(body):
 
 func ballTouched(ball):
 	if blockState == true:
-		var vector = Vector3()
-		vector = cameraRaycast.target_position
-		print(cameraRaycast.target_position)
-		#var from = camera.project_ray_origin(camera.position)
-		print(camera.position)
-		#var to = from + camera.project_ray_normal(camera.position)
 		var newVector = - camera.get_global_transform().basis.z
 		ball.changeVector(newVector)
 	else:
