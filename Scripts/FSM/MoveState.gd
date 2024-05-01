@@ -29,20 +29,35 @@ func Exit():
 	isCurrent = false
 
 func _unhandled_input(event):
-	if isCurrent:
-		if event is InputEventMouseMotion:
-			#head.rotate_y	or	rotate_y	????
-			PLAYER.rotate_y(-event.relative.x * sensitivity)
-			camera.rotate_x(-event.relative.y * sensitivity)
-			camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
+	pass
+	#if isCurrent:
+		#if event is InputEventMouseMotion:
+		#	#head.rotate_y	or	rotate_y	????
+		#	PLAYER.rotate_y(-event.relative.x * sensitivity)
+		#	camera.rotate_x(-event.relative.y * sensitivity)
+		#	camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
+
+func Unhandled_input(event):
+	if event is InputEventMouseMotion:
+		#head.rotate_y	or	rotate_y	????
+		PLAYER.rotate_y(-event.relative.x * sensitivity)
+		camera.rotate_x(-event.relative.y * sensitivity)
+		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
+
+func InputInState(event):	
+	if event.is_action_pressed("sprint"):
+		print("sprint change")
+		state_transition.emit(self, "Sprint")
+
 
 func _input(event):
-	if isCurrent:
-		if event.is_action_pressed("sprint"):
-			print("sprint change")
-			state_transition.emit(self, "Sprint")
-	else:
-		pass
+	pass
+	#if isCurrent:
+	#	if event.is_action_pressed("sprint"):
+	#		print("sprint change")
+	#		state_transition.emit(self, "Sprint")
+	#else:
+	#	pass
 
 func Update(_delta:float):
 	if not PLAYER.is_on_floor():

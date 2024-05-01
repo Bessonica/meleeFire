@@ -24,6 +24,14 @@ func _process(delta):
 	if current_state:
 		current_state.Update(delta)
 
+func _unhandled_input(event):
+	if current_state:
+		current_state.Unhandled_input(event)
+
+func _input(event):
+	if current_state:
+		current_state.InputInState(event)
+
 #region State Management
 #Use force_change_state cautiously, it immediately switches to a state regardless of any transitions.
 #This is used to force us into a 'death state' when killed

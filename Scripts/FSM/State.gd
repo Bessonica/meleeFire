@@ -16,3 +16,10 @@ func Exit():
 	
 func Update(_delta:float):
 	pass
+
+func Unhandled_input(event: InputEvent):
+	pass
+
+func InputInState(event: InputEvent):
+	pass
+	

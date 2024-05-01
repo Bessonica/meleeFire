@@ -60,21 +60,17 @@ func Update(_delta:float):
 	PLAYER.move_and_slide()
 
 
-func _input(event):
-	if isCurrent:
-		if event.is_action_released("sprint"):
-			print("sprint change")
-			state_transition.emit(self, "Moving")
-		if event.is_action_pressed("attack"):
-			print("this shouldnt appear")
-	else:
-		pass
 
+func InputInState(event: InputEvent):
+	if event.is_action_released("sprint"):
+		print("sprint change")
+		state_transition.emit(self, "Moving")
+	if event.is_action_pressed("attack"):
+		print("this shouldnt appear")	
 
-func _unhandled_input(event):
-	if isCurrent:
-		if event is InputEventMouseMotion:
-			#head.rotate_y	or	rotate_y	????
-			PLAYER.rotate_y(-event.relative.x * sensitivity)
-			camera.rotate_x(-event.relative.y * sensitivity)
-			camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
+func Unhandled_input(event):
+	if event is InputEventMouseMotion:
+		#head.rotate_y	or	rotate_y	????
+		PLAYER.rotate_y(-event.relative.x * sensitivity)
+		camera.rotate_x(-event.relative.y * sensitivity)
+		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
