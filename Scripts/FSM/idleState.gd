@@ -17,6 +17,7 @@ func Enter():
 func Update(_delta : float):
 	if not PLAYER.is_on_floor():
 		state_transition.emit(self, "Moving")
+
 	
 	if(Input.get_vector("moveLeft", "moveRIght", "moveForward", "moveBackward")):
 		state_transition.emit(self, "Moving")

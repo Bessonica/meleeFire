@@ -5,19 +5,26 @@ var states : Dictionary = {}
 var current_state : State
 @export var initial_state : State
 
+@onready var playerCamera = $"../Camera3D"
 #NOTE This is a generic finite_state_machine, it handles all states, changes to this code will affect
 	# everything that uses a state machine!
+
+#	TODO separate FSM, from player functions. make a child FSM(for player)
+#		remember super function
 
 func _ready():
 	for child in get_children():
 		if child is State:
 			states[child.name.to_lower()] = child
 			child.state_transition.connect(change_state)
+			
+			child.setParamiters(playerCamera)
 	
 	await owner.ready
 	if initial_state:
 		initial_state.Enter()
 		current_state = initial_state
+
 
 #Call the current states update function continuosly
 func _process(delta):

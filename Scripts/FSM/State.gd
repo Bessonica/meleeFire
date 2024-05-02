@@ -6,7 +6,10 @@ class_name State
 
 var isCurrent: bool
 
+var camera: Camera3D
+
 signal state_transition
+
 
 func Enter():
 	pass

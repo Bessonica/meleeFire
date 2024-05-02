@@ -22,4 +22,5 @@ func redirect():
 	pass
 
 func _on_body_entered(body):
-	body.ballTouched(self)
+	if body.has_method("ballTouched"):
+		body.ballTouched(self)

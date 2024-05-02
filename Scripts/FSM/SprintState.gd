@@ -3,7 +3,7 @@ class_name PlayerSprint
 
 
 @onready var player = $"../.."
-@onready var camera = $"../../Camera3D"
+#@onready var camera = $"../../Camera3D"
 
 var gravity = 9.8
 var speed
@@ -18,7 +18,7 @@ var t_bob = 0.0
 const BASE_FOV = 75.0
 const FOV_CHANGE = 0.7
 
-const sensitivity = 0.01
+#const sensitivity = 0.01
 
 
 # Called when the node enters the scene tree for the first time.
@@ -54,7 +54,7 @@ func Update(_delta:float):
 	#fov
 	var velocity_clamped = clamp(PLAYER.velocity.length(), 0.5, SPRINT_SPEED * 2)
 	var target_fov = BASE_FOV + FOV_CHANGE * velocity_clamped
-	camera.fov = lerp(camera.fov, target_fov, _delta * 8.0)
+	CAMERA.fov = lerp(CAMERA.fov, target_fov, _delta * 8.0)
 
 
 	PLAYER.move_and_slide()
@@ -68,9 +68,4 @@ func InputInState(event: InputEvent):
 	if event.is_action_pressed("attack"):
 		print("this shouldnt appear")	
 
-func Unhandled_input(event):
-	if event is InputEventMouseMotion:
-		#head.rotate_y	or	rotate_y	????
-		PLAYER.rotate_y(-event.relative.x * sensitivity)
-		camera.rotate_x(-event.relative.y * sensitivity)
-		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
+
