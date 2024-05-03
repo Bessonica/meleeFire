@@ -7,8 +7,10 @@ var CAMERA
 const sensitivity = 0.01
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	await owner.ready
-	PLAYER = owner as Player
+	pass
 
-func setParamiters(camera: Camera3D):
+
+func setParamiters(camera: Camera3D, player: CharacterBody3D):
+	await owner.ready
 	self.CAMERA = camera
+	self.PLAYER = player

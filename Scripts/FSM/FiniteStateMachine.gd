@@ -5,7 +5,7 @@ var states : Dictionary = {}
 var current_state : State
 @export var initial_state : State
 
-@onready var playerCamera = $"../Camera3D"
+#@onready var playerCamera = $"../Camera3D"
 #NOTE This is a generic finite_state_machine, it handles all states, changes to this code will affect
 	# everything that uses a state machine!
 
@@ -18,7 +18,7 @@ func _ready():
 			states[child.name.to_lower()] = child
 			child.state_transition.connect(change_state)
 			
-			child.setParamiters(playerCamera)
+			
 	
 	await owner.ready
 	if initial_state:

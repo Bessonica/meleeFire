@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://dfrpdqgyvpwu0"]
 
-[ext_resource type="Script" path="res://Scripts/FSM/FiniteStateMachine.gd" id="1_2p33i"]
 [ext_resource type="Script" path="res://Scenes/PlayerStateMachine/playerStateMachine.gd" id="1_6m0qq"]
 [ext_resource type="Script" path="res://Scripts/FSM/idleState.gd" id="2_1238h"]
+[ext_resource type="Script" path="res://Scripts/FSM/Player/FSMPlayerMovement.gd" id="2_fy3je"]
 [ext_resource type="Script" path="res://Scripts/FSM/MoveState.gd" id="3_ywc4t"]
 [ext_resource type="Script" path="res://Scripts/FSM/SprintState.gd" id="4_0lc4n"]
 
@@ -23,7 +23,7 @@ mesh = SubResource("CapsuleMesh_082hr")
 shape = SubResource("CapsuleShape3D_em1i3")
 
 [node name="FiniteStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
-script = ExtResource("1_2p33i")
+script = ExtResource("2_fy3je")
 initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="FiniteStateMachine"]
