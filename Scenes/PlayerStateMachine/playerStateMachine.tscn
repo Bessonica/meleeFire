@@ -249,7 +249,13 @@ mouse_filter = 1
 FSM = NodePath("../FiniteStateMachine")
 
 [node name="ShapeCast3D" type="ShapeCast3D" parent="."]
-enabled = false
 shape = SubResource("SeparationRayShape3D_4gfh4")
-target_position = Vector3(0, 1.15, 0)
+target_position = Vector3(0, 1.2, 0)
+collision_mask = 9
+collide_with_areas = true
+debug_shape_custom_color = Color(0.819608, 0.0941176, 0.117647, 1)
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, 1.2, 0)
+collision_mask = 8
 collide_with_areas = true

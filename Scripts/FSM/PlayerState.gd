@@ -5,6 +5,7 @@ class_name PlayerState
 @onready var PLAYER : Player
 var CAMERA
 var CROUCHSHAPECAST
+var CROUCHRAYCAST
 const sensitivity = 0.01
 @onready var ANIMATIONPLAYER : AnimationPlayer 
 
@@ -13,9 +14,9 @@ func _ready():
 	pass
 
 
-func setParamiters(camera: Camera3D, player: CharacterBody3D, animationPlayer: AnimationPlayer, crouchShapeCast: ShapeCast3D):
+func setParamiters(camera: Camera3D, player: CharacterBody3D, animationPlayer: AnimationPlayer, crouchRayCast: RayCast3D):
 	await owner.ready
 	self.CAMERA = camera
 	self.PLAYER = player
 	self.ANIMATIONPLAYER = animationPlayer
-	self.CROUCHSHAPECAST = crouchShapeCast
+	self.CROUCHRAYCAST = crouchRayCast

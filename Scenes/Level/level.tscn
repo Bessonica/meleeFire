@@ -48,6 +48,7 @@ navigation_mesh = SubResource("NavigationMesh_85cn1")
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="World/NavigationRegion3D"]
 use_collision = true
+collision_layer = 9
 
 [node name="CSGBox3D" type="CSGBox3D" parent="World/NavigationRegion3D/CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.11706, -0.331543, 2.91298)
@@ -55,9 +56,14 @@ material_override = SubResource("StandardMaterial3D_t3nu8")
 size = Vector3(32.0448, 0.336914, 28.3258)
 material = SubResource("StandardMaterial3D_pp6qf")
 
+[node name="CSGBox3D2" type="CSGBox3D" parent="World/NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.26171, 1.69946, -6.412)
+material_override = SubResource("StandardMaterial3D_t3nu8")
+size = Vector3(10.7514, 0.336914, 12.2737)
+material = SubResource("StandardMaterial3D_pp6qf")
+
 [node name="Zombie" parent="World" instance=ExtResource("3_7ho3i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.364633, -5)
-activated = true
 playerPath = NodePath("../../PlayerSM")
 
 [node name="BallSpawner" parent="World" instance=ExtResource("5_myvgy")]

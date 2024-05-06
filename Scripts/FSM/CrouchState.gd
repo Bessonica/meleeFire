@@ -50,12 +50,13 @@ func InputInState(event: InputEvent):
 	pass
 
 func uncrouch():
-	if CROUCHSHAPECAST.is_colliding() == false and Input.is_action_pressed("Crouch") == false:
+	if CROUCHRAYCAST.is_colliding() == false and Input.is_action_pressed("Crouch") == false:
 		ANIMATIONPLAYER.play('Crouch', -1.0, -crouchSpeed * 1.5, true)
 		if ANIMATIONPLAYER.is_playing():
 			await ANIMATIONPLAYER.animation_finished
 		state_transition.emit(self, "idle")
-	elif CROUCHSHAPECAST.is_colliding() == true:
+	elif CROUCHRAYCAST.is_colliding() == true:
+		print("colliding")
 		await get_tree().create_timer(0.1).timeout
 		uncrouch()
 
