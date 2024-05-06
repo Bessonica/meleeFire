@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dlmtbd7p6x7sg"]
+
+[ext_resource type="StyleBox" uid="uid://6j5it4s7ulj3" path="res://Scenes/player/DebugPanelInterface/ThemeResource/PanelContainerStyleBoxFlat.tres" id="1_pch32"]
+
+[resource]
+MarginContainer/constants/margin_bottom = 10
+MarginContainer/constants/margin_left = 10
+MarginContainer/constants/margin_right = 10
+MarginContainer/constants/margin_top = 10
+PanelContainer/styles/panel = ExtResource("1_pch32")

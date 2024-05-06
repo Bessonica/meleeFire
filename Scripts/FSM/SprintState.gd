@@ -5,18 +5,18 @@ class_name PlayerSprint
 @onready var player = $"../.."
 #@onready var camera = $"../../Camera3D"
 
-var gravity = 9.8
-var speed
-const WALK_SPEED = 5.0
-const SPRINT_SPEED = 8.0
+#var gravity = 9.8
+#var speed
+#const WALK_SPEED = 5.0
+#const SPRINT_SPEED = 8.0
 
 
-const BOB_FREQ = 2.4
-const BOB_AMP = 0.08
-var t_bob = 0.0
+#const BOB_FREQ = 2.4
+#const BOB_AMP = 0.08
+#var t_bob = 0.0
 
-const BASE_FOV = 75.0
-const FOV_CHANGE = 0.7
+#const BASE_FOV = 75.0
+#const FOV_CHANGE = 0.7
 
 #const sensitivity = 0.01
 

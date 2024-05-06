@@ -1,45 +1,17 @@
 extends PlayerMovementState
-class_name PlayerMove
+class_name PlayerCrouch
 
-@onready var player = $"../.."
-#@onready var camera = $"../../Camera3D"
+@export_range(1, 6, 0.1) var crouchSpeed : float = 4.0
 
-
-#const sensitivity = 0.01
-
-# Called when the node enters the scene tree for the first time.
 func Enter():
 	speed = WALK_SPEED
-	isCurrent = true
+	print("hey")
+	ANIMATIONPLAYER.play('Crouch', -1.0, crouchSpeed)
 	
 func Exit():
-	isCurrent = false
-
-func _unhandled_input(event):
 	pass
-	#if isCurrent:
-		#if event is InputEventMouseMotion:
-		#	#head.rotate_y	or	rotate_y	????
-		#	PLAYER.rotate_y(-event.relative.x * sensitivity)
-		#	camera.rotate_x(-event.relative.y * sensitivity)
-		#	camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
-
-
-
-func InputInState(event: InputEvent):	
-	if event.is_action_pressed("sprint"):
-		print("sprint change")
-		state_transition.emit(self, "Sprint")
-
-	if event.is_action_pressed("Crouch"):
-		state_transition.emit(self, "Crouch")
-
-
+	#ANIMATIONPLAYER.play('StandUp', -1.0, crouchSpeed)
 	
-func _input(event):
-	pass
-
-
 func Update(_delta:float):
 	if not PLAYER.is_on_floor():
 		PLAYER.velocity.y -= gravity * _delta
@@ -60,7 +32,7 @@ func Update(_delta:float):
 	
 	
 	t_bob += _delta * PLAYER.velocity.length() * float(PLAYER.is_on_floor())
-	CAMERA.transform.origin = _headbob(t_bob)
+	#CAMERA.transform.origin = _headbob(t_bob)
 
 	#fov
 	var velocity_clamped = clamp(PLAYER.velocity.length(), 0.5, SPRINT_SPEED * 2)
@@ -72,8 +44,10 @@ func Update(_delta:float):
 
 	PLAYER.move_and_slide()
 
-func _headbob(time) -> Vector3:
-	var pos = Vector3.ZERO
-	pos.y = sin(time * BOB_FREQ) * BOB_AMP
-	pos.x = cos(time * BOB_FREQ / 2) * BOB_AMP
-	return pos
+func Unhandled_input(event: InputEvent):
+	super(event)
+	if event.is_action_released("Crouch"):
+		state_transition.emit(self, "idle")
+
+func InputInState(event: InputEvent):
+	pass

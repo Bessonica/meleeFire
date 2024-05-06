@@ -61,7 +61,8 @@ func targetInRange():
 func hitFinished():
 	if global_position.distance_to(player.global_position) <= attackRange + 1.0:
 		var dir = global_position.direction_to(player.global_position)
-		player.hit(dir)
+		if player.has_method("hit"):
+			player.hit(dir)
 
 func gotHit():
 	changeColor(colorRed)
