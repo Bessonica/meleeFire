@@ -10,7 +10,6 @@ func Enter():
 	
 func Exit():
 	pass
-	#ANIMATIONPLAYER.play('StandUp', -1.0, crouchSpeed)
 	
 func Update(_delta:float):
 	if not PLAYER.is_on_floor():
@@ -41,13 +40,22 @@ func Update(_delta:float):
 	
 #	if PLAYER.velocity < Vector3(0.004, 0.004, 0.004):
 #		state_transition.emit(self, "idle")
-
+	if Input.is_action_just_released("Crouch"):
+		uncrouch()
+	
 	PLAYER.move_and_slide()
 
-func Unhandled_input(event: InputEvent):
-	super(event)
-	if event.is_action_released("Crouch"):
-		state_transition.emit(self, "idle")
 
 func InputInState(event: InputEvent):
 	pass
+
+func uncrouch():
+	if CROUCHSHAPECAST.is_colliding() == false and Input.is_action_pressed("Crouch") == false:
+		ANIMATIONPLAYER.play('Crouch', -1.0, -crouchSpeed * 1.5, true)
+		if ANIMATIONPLAYER.is_playing():
+			await ANIMATIONPLAYER.animation_finished
+		state_transition.emit(self, "idle")
+	elif CROUCHSHAPECAST.is_colliding() == true:
+		await get_tree().create_timer(0.1).timeout
+		uncrouch()
+

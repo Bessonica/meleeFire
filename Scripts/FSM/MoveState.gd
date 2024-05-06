@@ -60,7 +60,7 @@ func Update(_delta:float):
 	
 	
 	t_bob += _delta * PLAYER.velocity.length() * float(PLAYER.is_on_floor())
-	CAMERA.transform.origin = _headbob(t_bob)
+	#CAMERA.transform.origin = _headbob(t_bob)
 
 	#fov
 	var velocity_clamped = clamp(PLAYER.velocity.length(), 0.5, SPRINT_SPEED * 2)
@@ -72,8 +72,12 @@ func Update(_delta:float):
 
 	PLAYER.move_and_slide()
 
+	#	TODO when stateTransition from crouch to walk _headbob creates camera jump in the begining
+
 func _headbob(time) -> Vector3:
-	var pos = Vector3.ZERO
-	pos.y = sin(time * BOB_FREQ) * BOB_AMP
-	pos.x = cos(time * BOB_FREQ / 2) * BOB_AMP
-	return pos
+	return Vector3(0,0,0)
+	pass
+	#var pos = Vector3.ZERO
+	#pos.y = sin(time * BOB_FREQ) * BOB_AMP
+	#pos.x = cos(time * BOB_FREQ / 2) * BOB_AMP
+	#return pos
