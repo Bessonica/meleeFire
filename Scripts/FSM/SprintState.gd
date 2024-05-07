@@ -22,7 +22,7 @@ class_name PlayerSprint
 
 
 # Called when the node enters the scene tree for the first time.
-func Enter():
+func Enter(previousState):
 	isCurrent = true
 	speed = SPRINT_SPEED
 	
@@ -65,7 +65,7 @@ func InputInState(event: InputEvent):
 	if event.is_action_released("sprint"):
 		print("sprint change")
 		state_transition.emit(self, "Moving")
-	if event.is_action_pressed("attack"):
-		print("this shouldnt appear")	
+	if event.is_action_pressed("Crouch"):
+		state_transition.emit(self, "Crouch")
 
 

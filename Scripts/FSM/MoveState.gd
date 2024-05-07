@@ -8,7 +8,7 @@ class_name PlayerMove
 #const sensitivity = 0.01
 
 # Called when the node enters the scene tree for the first time.
-func Enter():
+func Enter(previousState):
 	speed = WALK_SPEED
 	isCurrent = true
 	
@@ -27,11 +27,10 @@ func _unhandled_input(event):
 
 
 func InputInState(event: InputEvent):	
-	if event.is_action_pressed("sprint"):
-		print("sprint change")
+	if event.is_action_pressed("sprint") and PLAYER.is_on_floor():
 		state_transition.emit(self, "Sprint")
-
-	if event.is_action_pressed("Crouch"):
+	#if event.is_pressed()
+	if event.is_action_pressed("Crouch") and PLAYER.is_on_floor():
 		state_transition.emit(self, "Crouch")
 
 
@@ -41,6 +40,10 @@ func _input(event):
 
 
 func Update(_delta:float):
+	#	InputInState isnt called when you hold button from previous state
+	if Input.is_action_pressed("sprint") and PLAYER.is_on_floor():
+		state_transition.emit(self, "Sprint")
+	
 	if not PLAYER.is_on_floor():
 		PLAYER.velocity.y -= gravity * _delta
 		

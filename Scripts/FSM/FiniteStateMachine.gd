@@ -22,7 +22,7 @@ func _ready():
 	
 	await owner.ready
 	if initial_state:
-		initial_state.Enter()
+		initial_state.Enter(null)
 		current_state = initial_state
 
 
@@ -30,6 +30,10 @@ func _ready():
 func _process(delta):
 	if current_state:
 		current_state.Update(delta)
+
+func _physics_process(delta):
+	if current_state:
+		current_state.PhysicsUpdate(delta)
 
 func _unhandled_input(event):
 	if current_state:
@@ -59,7 +63,7 @@ func force_change_state(new_state : String):
 		var exit_callable = Callable(current_state, "Exit")
 		exit_callable.call_deferred()
 	
-	newState.Enter()
+	newState.Enter(current_state)
 	
 	current_state = newState
 	
@@ -77,7 +81,7 @@ func change_state(source_state : State, new_state_name : String):
 	if current_state:
 		current_state.Exit()
 		
-	new_state.Enter()
+	new_state.Enter(current_state)
 	
 	current_state = new_state
 

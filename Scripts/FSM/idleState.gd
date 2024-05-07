@@ -8,13 +8,13 @@ var desc = "hey"
 #var gravity = 9.8
 
 
-func Enter():
+func Enter(previousState):
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	isCurrent = true
 	#animator.play("Idle")
 
 func InputInState(event: InputEvent):	
-	if event.is_action_pressed("Crouch"):
+	if event.is_action_pressed("Crouch") and PLAYER.is_on_floor():
 		state_transition.emit(self, "Crouch")
 	
 func Update(_delta : float):

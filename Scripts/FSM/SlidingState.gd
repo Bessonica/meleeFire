@@ -1,15 +1,41 @@
 extends PlayerMovementState
-class_name PlayerCrouch
+class_name PlayerSliding
 
-@export_range(1, 6, 0.1) var crouchSpeed : float = 4.0
+
+@export var slideSpeed: float = 6.0
+@export var acceleration: float = 0.1
+@export var deAceleration: float = 0.25
+@export var tiltAmount: float = 0.09
+@export_range(1, 6, 0.1) var slideAnimSpeed: float = 4.0
+
 
 func Enter(previousState):
-	speed = WALK_SPEED
-	ANIMATIONPLAYER.play('Crouch', -1.0, crouchSpeed)
-	
-func Exit():
-	pass
-	
+	#setTilt(PLAYER._current_rotation)
+	ANIMATIONPLAYER.get_animation("Sliding")
+	print(ANIMATIONPLAYER.get_animation("Sliding").track_get_path(0))
+
+	# 0 - 7
+#CollisionShape3D:shape:height
+#CollisionShape3D:position
+#Camera3D:position
+#Camera3D:rotation
+#RayCast3D:position
+#FiniteStateMachine/Slide:slideSpeed
+#FiniteStateMachine/Slide
+#Camera3D:fov
+#	TODO this function tilts camera left or right, player rotation you can find in beginning of episode
+#		about sliding
+func setTilt(playerRotation):
+	var tilt = Vector3.ZERO
+	tilt.z = clamp(tiltAmount * playerRotation, -0.1, 0.1)
+	if tilt.z == 0:
+		tilt.z = 0.05
+	ANIMATIONPLAYER.get_animation("Sliding").track_set_key_value(0, 1, tilt)
+	ANIMATIONPLAYER.get_animation("Sliding").track_set_key_value(0, 2, tilt)
+
+func finish():
+	state_transition.emit(self, "Crouch")
+
 func Update(_delta:float):
 	if not PLAYER.is_on_floor():
 		PLAYER.velocity.y -= gravity * _delta
@@ -39,22 +65,5 @@ func Update(_delta:float):
 	
 #	if PLAYER.velocity < Vector3(0.004, 0.004, 0.004):
 #		state_transition.emit(self, "idle")
-	if Input.is_action_just_released("Crouch"):
-		uncrouch()
-	
+
 	PLAYER.move_and_slide()
-
-
-func InputInState(event: InputEvent):
-	pass
-
-func uncrouch():
-	if CROUCHRAYCAST.is_colliding() == false and Input.is_action_pressed("Crouch") == false:
-		ANIMATIONPLAYER.play('Crouch', -1.0, -crouchSpeed * 1.5, true)
-		if ANIMATIONPLAYER.is_playing():
-			await ANIMATIONPLAYER.animation_finished
-		state_transition.emit(self, "idle")
-	elif CROUCHRAYCAST.is_colliding() == true:
-		await get_tree().create_timer(0.1).timeout
-		uncrouch()
-

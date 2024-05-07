@@ -11,13 +11,16 @@ var camera: Camera3D
 signal state_transition
 
 
-func Enter():
+func Enter(previousState):
 	pass
 	
 func Exit():
 	pass
 	
 func Update(_delta:float):
+	pass
+
+func PhysicsUpdate(_delta: float):
 	pass
 
 func Unhandled_input(event: InputEvent):
