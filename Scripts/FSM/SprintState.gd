@@ -68,4 +68,5 @@ func InputInState(event: InputEvent):
 	if event.is_action_pressed("Crouch"):
 		state_transition.emit(self, "Slide")
 
-
+	if event.is_action_pressed("jump") and PLAYER.is_on_floor():
+		state_transition.emit(self, "Jump")
