@@ -66,6 +66,6 @@ func InputInState(event: InputEvent):
 		print("sprint change")
 		state_transition.emit(self, "Moving")
 	if event.is_action_pressed("Crouch"):
-		state_transition.emit(self, "Crouch")
+		state_transition.emit(self, "Slide")
 
 

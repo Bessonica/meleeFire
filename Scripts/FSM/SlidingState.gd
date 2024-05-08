@@ -10,9 +10,18 @@ class_name PlayerSliding
 
 
 func Enter(previousState):
+	speed = SPRINT_SPEED
 	#setTilt(PLAYER._current_rotation)
-	ANIMATIONPLAYER.get_animation("Sliding")
-	print(ANIMATIONPLAYER.get_animation("Sliding").track_get_path(0))
+	ANIMATIONPLAYER.get_animation("Sliding").track_set_key_value(4, 0, PLAYER.velocity.length())
+	ANIMATIONPLAYER.speed_scale = 1.0
+	ANIMATIONPLAYER.play("Sliding", -1.0, slideAnimSpeed)
+	#print(ANIMATIONPLAYER.get_animation("Sliding").track_get_path(0))
+
+func Exit():
+	pass
+	#ANIMATIONPLAYER.stop()
+
+
 
 	# 0 - 7
 #CollisionShape3D:shape:height
@@ -37,6 +46,9 @@ func finish():
 	state_transition.emit(self, "Crouch")
 
 func Update(_delta:float):
+	if Input.is_action_just_released("Crouch"):
+		finish()
+	
 	if not PLAYER.is_on_floor():
 		PLAYER.velocity.y -= gravity * _delta
 		

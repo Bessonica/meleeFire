@@ -32,7 +32,7 @@ func InputInState(event: InputEvent):
 	#if event.is_pressed()
 	if event.is_action_pressed("Crouch") and PLAYER.is_on_floor():
 		state_transition.emit(self, "Crouch")
-
+	
 
 	
 func _input(event):

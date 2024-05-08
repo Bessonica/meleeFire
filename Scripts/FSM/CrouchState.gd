@@ -4,8 +4,17 @@ class_name PlayerCrouch
 @export_range(1, 6, 0.1) var crouchSpeed : float = 4.0
 
 func Enter(previousState):
+	ANIMATIONPLAYER.speed_scale = 1.0
 	speed = WALK_SPEED
-	ANIMATIONPLAYER.play('Crouch', -1.0, crouchSpeed)
+	
+	if previousState.name != "Slide":
+		ANIMATIONPLAYER.play('Crouch', -1.0, crouchSpeed)
+	elif previousState.name == "Slide":
+		ANIMATIONPLAYER.current_animation = "Crouch"
+		ANIMATIONPLAYER.seek(1.0, true)
+	
+	if CROUCHRAYCAST.is_colliding():
+		uncrouch()
 	
 func Exit():
 	pass
@@ -39,7 +48,7 @@ func Update(_delta:float):
 	
 #	if PLAYER.velocity < Vector3(0.004, 0.004, 0.004):
 #		state_transition.emit(self, "idle")
-	if Input.is_action_just_released("Crouch"):
+	if !Input.is_action_pressed("Crouch"):
 		uncrouch()
 	
 	PLAYER.move_and_slide()
