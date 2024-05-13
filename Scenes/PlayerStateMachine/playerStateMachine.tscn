@@ -359,7 +359,6 @@ script = ExtResource("1_6m0qq")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.505581, -0.422167)
 
 [node name="WeaponComponentNode" parent="Camera3D" instance=ExtResource("2_1ektm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 visible = false
