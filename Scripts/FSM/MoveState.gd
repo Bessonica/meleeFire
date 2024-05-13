@@ -71,8 +71,9 @@ func Update(_delta:float):
 	var target_fov = BASE_FOV + FOV_CHANGE * velocity_clamped
 	CAMERA.fov = lerp(CAMERA.fov, target_fov, _delta * 8.0)
 	
-#	if PLAYER.velocity < Vector3(0.004, 0.004, 0.004):
-#		state_transition.emit(self, "idle")
+
+	if PLAYER.velocity < Vector3(0.004, 0.004, 0.004) and PLAYER.velocity > Vector3(-0.004, -0.004, -0.004):
+		state_transition.emit(self, "idle")
 
 	PLAYER.move_and_slide()
 

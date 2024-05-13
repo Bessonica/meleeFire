@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwsrdpgedv5g"]
+
+[ext_resource type="Script" path="res://Scenes/player/Weapons/weaponComponentNode.gd" id="1_pskmx"]
+[ext_resource type="PackedScene" uid="uid://cjnbq1y66g5jv" path="res://Scenes/Weapons/sword/sword.tscn" id="2_7avit"]
+
+[node name="WeaponComponentNode" type="Node3D"]
+script = ExtResource("1_pskmx")
+
+[node name="Sword" parent="." instance=ExtResource("2_7avit")]
