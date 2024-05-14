@@ -11,7 +11,7 @@ var framesPerSecond: String
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	visible = true
-	#addDebugProperty("FPS", framesPerSecond)
+	addDebugProperty("FPS", framesPerSecond)
 	addDebugProperty("State", currentStateProperty)
 
 func _input(event):
@@ -30,8 +30,8 @@ func addDebugProperty(title : String, value):
 func _process(delta):
 	if visible:
 		#	TODO dont understand how framesPerSecond updates on screen, we have one property var for all data
-		#framesPerSecond = "%.2f" % (1.0/delta)
-		#property.text = property.name + ": " + framesPerSecond
+		framesPerSecond = "%.2f" % (1.0/delta)
+		property.text = property.name + ": " + framesPerSecond
 		
 		currentStateProperty = FSM.current_state.name.to_lower()
 		property.text = property.name + ": " + currentStateProperty

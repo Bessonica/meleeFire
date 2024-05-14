@@ -18,6 +18,5 @@ func _process(delta):
 #	TODO 	check  _unhandled_key_input  function
 func _unhandled_input(event):
 	if event.is_action_pressed("attack"):
-		print("attack")
-		print(currentWeapon.name)
+		currentWeapon.attack()
 
