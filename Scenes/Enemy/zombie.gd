@@ -65,7 +65,7 @@ func hitFinished():
 			player.hit(dir)
 
 func gotHit():
-	changeColor(colorRed)
+	switchColor()
 
 func changeColor(color):
 	var meshMaterial = meshSurface.mesh.surface_get_material(0)
@@ -73,6 +73,10 @@ func changeColor(color):
 	meshSurface.mesh.surface_set_material(0, meshMaterial)
 
 
-
-
+func switchColor():
+	var meshMaterial = meshSurface.mesh.surface_get_material(0)
+	if meshMaterial.albedo_color == Color(colorRed):
+		changeColor(colorDefault)
+	else:
+		changeColor(colorRed)
 
