@@ -19,9 +19,11 @@ func _process(delta):
 func attack():
 	animationPlayer.play("Attack")
 
+func block():
+	animationPlayer.play("Block")
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "Attack":
 		animationPlayer.play("Idle")
-	else:
-		pass
+	if anim_name == "Block":
+		animationPlayer.play("Idle")

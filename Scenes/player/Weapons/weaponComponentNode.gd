@@ -19,4 +19,6 @@ func _process(delta):
 func _unhandled_input(event):
 	if event.is_action_pressed("attack"):
 		currentWeapon.attack()
+	if event.is_action_pressed("block"):
+		currentWeapon.block()
 

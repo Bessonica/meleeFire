@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cjnbq1y66g5jv"]
+[gd_scene load_steps=12 format=3 uid="uid://cjnbq1y66g5jv"]
 
 [ext_resource type="Script" path="res://Scenes/Weapons/sword/Sword.gd" id="1_jgum0"]
 
@@ -158,9 +158,38 @@ tracks/3/keys = {
 "values": [Vector3(0, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_0mwe8"]
+resource_name = "Block"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponPivot/MeshInstance3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.203101, -0.131125, -0.429147), Vector3(0.203101, -0.0651177, -0.429147)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponPivot/MeshInstance3D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.0122173, -0.280998, 1.5708), Vector3(0.0122173, -0.280998, 1.5708)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8rh5f"]
 _data = {
 "Attack": SubResource("Animation_xikkh"),
+"Block": SubResource("Animation_0mwe8"),
 "Idle": SubResource("Animation_swl0x"),
 "RESET": SubResource("Animation_euxm4")
 }
@@ -190,7 +219,6 @@ mesh = SubResource("BoxMesh_jr76f")
 skeleton = NodePath("../..")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.203101, -0.131125, -0.429147)
 visible = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
