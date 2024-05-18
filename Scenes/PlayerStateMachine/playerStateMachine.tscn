@@ -394,9 +394,8 @@ libraries = {
 "": SubResource("AnimationLibrary_ld0ph")
 }
 
-[node name="DebugPanelInterface" parent="." node_paths=PackedStringArray("FSM") instance=ExtResource("7_5pm2s")]
+[node name="DebugPanelInterface" parent="." instance=ExtResource("7_5pm2s")]
 mouse_filter = 1
-FSM = NodePath("../FiniteStateMachine")
 
 [node name="ShapeCast3D" type="ShapeCast3D" parent="."]
 shape = SubResource("SeparationRayShape3D_4gfh4")
