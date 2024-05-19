@@ -1,17 +1,17 @@
-[gd_scene load_steps=14 format=3 uid="uid://cjnbq1y66g5jv"]
+[gd_scene load_steps=14 format=3 uid="uid://bspxxndgasl8x"]
 
-[ext_resource type="Script" path="res://Scenes/Weapons/sword/Sword.gd" id="1_jgum0"]
+[ext_resource type="Script" path="res://Scenes/Weapons/hammer/hammer.gd" id="1_rly3e"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8c4h3"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xjrjp"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_yyjuo"]
-material = SubResource("StandardMaterial3D_8c4h3")
+[sub_resource type="BoxMesh" id="BoxMesh_8ehum"]
+material = SubResource("StandardMaterial3D_xjrjp")
 size = Vector3(0.025, 0.4, 0.025)
 
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_wk28e"]
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_vsx6i"]
 data = PackedVector3Array(-0.0125, 0.2, 0.0125, 0.0125, 0.2, 0.0125, -0.0125, -0.2, 0.0125, 0.0125, 0.2, 0.0125, 0.0125, -0.2, 0.0125, -0.0125, -0.2, 0.0125, 0.0125, 0.2, -0.0125, -0.0125, 0.2, -0.0125, 0.0125, -0.2, -0.0125, -0.0125, 0.2, -0.0125, -0.0125, -0.2, -0.0125, 0.0125, -0.2, -0.0125, 0.0125, 0.2, 0.0125, 0.0125, 0.2, -0.0125, 0.0125, -0.2, 0.0125, 0.0125, 0.2, -0.0125, 0.0125, -0.2, -0.0125, 0.0125, -0.2, 0.0125, -0.0125, 0.2, -0.0125, -0.0125, 0.2, 0.0125, -0.0125, -0.2, -0.0125, -0.0125, 0.2, 0.0125, -0.0125, -0.2, 0.0125, -0.0125, -0.2, -0.0125, 0.0125, 0.2, 0.0125, -0.0125, 0.2, 0.0125, 0.0125, 0.2, -0.0125, -0.0125, 0.2, 0.0125, -0.0125, 0.2, -0.0125, 0.0125, 0.2, -0.0125, -0.0125, -0.2, 0.0125, 0.0125, -0.2, 0.0125, -0.0125, -0.2, -0.0125, 0.0125, -0.2, 0.0125, 0.0125, -0.2, -0.0125, -0.0125, -0.2, -0.0125)
 
-[sub_resource type="BoxMesh" id="BoxMesh_jr76f"]
+[sub_resource type="BoxMesh" id="BoxMesh_jktqy"]
 size = Vector3(0.07, 0.07, 0.07)
 
 [sub_resource type="Animation" id="Animation_xikkh"]
@@ -194,35 +194,34 @@ _data = {
 "RESET": SubResource("Animation_euxm4")
 }
 
-[sub_resource type="BoxMesh" id="BoxMesh_oqx6m"]
+[sub_resource type="BoxMesh" id="BoxMesh_cvp6g"]
 size = Vector3(0.05, 0.05, 0.05)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_1qo6d"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_3oxko"]
 size = Vector3(0.610742, 0.2, 0.495313)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_olnud"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_3787s"]
 size = Vector3(1.03464, 0.607056, 0.599365)
 
-[node name="Sword" type="Node3D"]
-script = ExtResource("1_jgum0")
+[node name="Hammer" type="Node3D"]
+script = ExtResource("1_rly3e")
 
 [node name="WeaponPivot" type="Node3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="WeaponPivot"]
 transform = Transform3D(-0.0597911, 0.905208, 0.420741, -0.998211, -0.0542198, -0.0252029, -1.4361e-06, -0.421495, 0.906831, 0, 0, 0)
-mesh = SubResource("BoxMesh_yyjuo")
+mesh = SubResource("BoxMesh_8ehum")
 skeleton = NodePath("../..")
 
 [node name="Hitbox" type="Area3D" parent="WeaponPivot/MeshInstance3D"]
-transform = Transform3D(1, 6.3215e-09, 1.72577e-09, 1.81177e-09, 1, -2.98023e-08, 1.55273e-09, 2.98023e-08, 1, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WeaponPivot/MeshInstance3D/Hitbox"]
 transform = Transform3D(1, -7.45058e-09, -3.72529e-09, 0, 1, 5.96046e-08, 0, 0, 1, 0, 0, 0)
-shape = SubResource("ConcavePolygonShape3D_wk28e")
+shape = SubResource("ConcavePolygonShape3D_vsx6i")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="WeaponPivot/MeshInstance3D"]
-transform = Transform3D(1, 1.66988e-08, 3.67766e-09, 9.96863e-10, 0.999958, -0.00916344, 3.30601e-09, 0.00916323, 0.999958, 0.00230584, -0.10501, 0.00283295)
-mesh = SubResource("BoxMesh_jr76f")
+transform = Transform3D(1, 0, 0, 0, 0.999958, -0.00916341, 0, 0.0091632, 0.999958, 0.00224774, 0.224753, -0.000396311)
+mesh = SubResource("BoxMesh_jktqy")
 skeleton = NodePath("../..")
 
 [node name="Camera3D" type="Camera3D" parent="."]
@@ -235,7 +234,7 @@ libraries = {
 autoplay = "Idle"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_oqx6m")
+mesh = SubResource("BoxMesh_cvp6g")
 
 [node name="AttackArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.205286, 0, -0.268464)
@@ -246,7 +245,7 @@ monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AttackArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.205371, 0, -0.147656)
-shape = SubResource("BoxShape3D_1qo6d")
+shape = SubResource("BoxShape3D_3oxko")
 
 [node name="BlockArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.154217)
@@ -255,8 +254,4 @@ collision_mask = 128
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BlockArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0124359, -0.00604248, -0.248901)
-shape = SubResource("BoxShape3D_olnud")
-
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
-[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
-[connection signal="area_entered" from="BlockArea" to="." method="_on_block_area_area_entered"]
+shape = SubResource("BoxShape3D_3787s")

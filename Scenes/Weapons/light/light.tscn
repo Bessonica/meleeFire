@@ -1,0 +1,91 @@
+[gd_scene load_steps=9 format=3 uid="uid://cmhs6kjb5efm1"]
+
+[ext_resource type="PackedScene" uid="uid://bgedutcghavay" path="res://Scenes/Weapons/weaponBasic/weaponBasic.tscn" id="1_1av7c"]
+[ext_resource type="Script" path="res://Scenes/Weapons/light/light.gd" id="2_8nq86"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_haomf"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_uhoe3"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="Animation" id="Animation_0tqdj"]
+resource_name = "light"
+
+[sub_resource type="Animation" id="Animation_4h4bn"]
+resource_name = "idle"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponPivot/MeshInstance3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.00194447, 0.093552, 0.0574325)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponPivot/MeshInstance3D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.271658, 0.00128891, 0.00943069)]
+}
+
+[sub_resource type="Animation" id="Animation_kq3la"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponPivot/MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponPivot/MeshInstance3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ee2up"]
+_data = {
+"RESET": SubResource("Animation_kq3la"),
+"idle": SubResource("Animation_4h4bn"),
+"light": SubResource("Animation_0tqdj")
+}
+
+[node name="Light" instance=ExtResource("1_1av7c")]
+script = ExtResource("2_8nq86")
+
+[node name="MeshInstance3D" parent="WeaponPivot" index="0"]
+transform = Transform3D(1, 0, 0, 0, 3.18507, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_haomf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WeaponPivot/MeshInstance3D" index="0"]
+transform = Transform3D(0.814759, -0.0181498, 0.00355319, 0.0147904, 0.843972, -0.360999, 0.00429991, 0.536079, 0.568456, 0.00485003, 0.0953946, 0.0518802)
+mesh = SubResource("BoxMesh_uhoe3")
+
+[node name="AnimationPlayer" parent="." index="4"]
+libraries = {
+"": SubResource("AnimationLibrary_ee2up")
+}

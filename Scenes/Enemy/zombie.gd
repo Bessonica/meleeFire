@@ -3,7 +3,7 @@ extends CharacterBody3D
 
 var player = null
 const speed = 2.0
-const attackRange = 2.5
+const attackRange = 3.5
 var stateMachine
 
 const colorDefault = "ec958c"
@@ -62,12 +62,12 @@ func targetInRange():
 	return global_position.distance_to(player.global_position) < attackRange
 
 func hitFinished():
-	if global_position.distance_to(player.global_position) <= attackRange + 1.0:
+	if global_position.distance_to(player.global_position) <= attackRange:
 		attackArea.monitoring = true
 		var dir = global_position.direction_to(player.global_position)
 		if !attackArea.has_overlapping_areas():
 			if player.has_method("hit"):
-				player.hit(dir)
+				player.hit(dir, attackArea.has_overlapping_areas())
 	
 	attackArea.monitoring = false
 

@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgedutcghavay"]
+
+[ext_resource type="Script" path="res://Scenes/player/Weapons/weaponBasic.gd" id="1_aso0p"]
+
+[node name="WeaponBasic" type="Node3D"]
+script = ExtResource("1_aso0p")
+
+[node name="WeaponPivot" type="Node3D" parent="."]
+transform = Transform3D(-0.0338372, 0, 0.999427, 0, 1, 0, -0.999427, 0, -0.0338372, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WeaponPivot"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+visible = false
+
+[node name="AttackArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.205286, 0, -0.268464)
+collision_layer = 16
+collision_mask = 4
+monitoring = false
+monitorable = false
+
+[node name="BlockArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.154217)
+collision_layer = 32
+collision_mask = 128
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

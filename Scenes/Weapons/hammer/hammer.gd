@@ -1,5 +1,6 @@
 extends WeaponBasic
-class_name SwordPlayer
+class_name HammerPlayer
+
 
 
 #@onready var animationPlayer = $AnimationPlayer

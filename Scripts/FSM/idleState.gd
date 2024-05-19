@@ -9,7 +9,7 @@ var desc = "hey"
 
 
 func Enter(previousState):
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	#	MOUSE_MODE_VISIBLE
 	#	MOUSE_MODE_CAPTURED
 	isCurrent = true
