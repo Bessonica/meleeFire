@@ -9,7 +9,9 @@ var desc = "hey"
 
 
 func Enter(previousState):
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	#	MOUSE_MODE_VISIBLE
+	#	MOUSE_MODE_CAPTURED
 	isCurrent = true
 	#animator.play("Idle")
 

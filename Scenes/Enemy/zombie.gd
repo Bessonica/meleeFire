@@ -55,7 +55,8 @@ func _process(delta):
 
 func _physics_process(delta):
 	if attackArea.has_overlapping_areas():
-		print("block")
+		pass
+		#print("block")
 
 func targetInRange():
 	return global_position.distance_to(player.global_position) < attackRange

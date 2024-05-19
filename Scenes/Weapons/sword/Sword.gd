@@ -15,6 +15,8 @@ func _ready():
 	blockArea.monitorable = false
 	blockArea.monitoring = false
 	
+	activateArea(blockArea)
+	
 	if animationPlayer.current_animation == "Idle":
 		isIdle = true
 	#await get_tree().create_timer(5.0).timeout
@@ -63,3 +65,10 @@ func activateArea(area):
 
 func _on_attack_area_body_entered(body):
 	body.gotHit()
+	
+	
+
+
+func _on_block_area_area_entered(area):
+	pass
+	#print("there is block")

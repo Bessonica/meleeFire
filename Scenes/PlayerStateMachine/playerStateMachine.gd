@@ -10,3 +10,5 @@ func _process(delta):
 
 func hit(dir):
 	print("got hit")
+	print("attack area monitorable = ", weaponComponent.sword.attackArea.monitorable, "\n", "attackArea monitoring = ", weaponComponent.sword.attackArea.monitoring)
+	print("blockArea monitorable = ", weaponComponent.sword.blockArea.monitorable, "\n", "blockArea monitoring = ", weaponComponent.sword.blockArea.monitoring)
