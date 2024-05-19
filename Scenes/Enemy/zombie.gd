@@ -18,12 +18,14 @@ const colorRed = "d73643"
 
 @onready var meshSurface = $zombie/Armature/Skeleton3D/Beta_Surface
 
+@onready var attackArea = $AttackArea3D
 #default		ec958c
 #red	d73643
 
 func _ready():
 	player = get_node(playerPath)
 	stateMachine = animTree.get("parameters/playback")
+	attackArea.monitoring = true
 
 func _process(delta):
 	if !activated:
@@ -46,23 +48,27 @@ func _process(delta):
 	
 	
 	
-	
 	animTree.set("parameters/conditions/attack", targetInRange())
 	animTree.set("parameters/conditions/run", !targetInRange())
 	
 	move_and_slide()
 
 func _physics_process(delta):
-	pass
+	if attackArea.has_overlapping_areas():
+		print("block")
 
 func targetInRange():
 	return global_position.distance_to(player.global_position) < attackRange
 
 func hitFinished():
 	if global_position.distance_to(player.global_position) <= attackRange + 1.0:
+		attackArea.monitoring = true
 		var dir = global_position.direction_to(player.global_position)
-		if player.has_method("hit"):
-			player.hit(dir)
+		if !attackArea.has_overlapping_areas():
+			if player.has_method("hit"):
+				player.hit(dir)
+	
+	attackArea.monitoring = false
 
 func gotHit():
 	switchColor()
@@ -80,3 +86,7 @@ func switchColor():
 	else:
 		changeColor(colorRed)
 
+
+
+func _on_attack_area_3d_area_entered(area):
+	pass # Replace with function body.

@@ -25,29 +25,40 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+	#if blockArea.has_overlapping_bodies():
+	#	print("zombie")
 
 
 func attack():
 	if isIdle:
-		attackArea.monitoring = true
+		activateArea(attackArea)
 		animationPlayer.play("Attack")
 		isIdle = false
 
 func block():
 	if isIdle:
 		animationPlayer.play("Block")
-		blockArea.monitoring = true
+		activateArea(blockArea)
 		isIdle = false
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "Attack":
 		animationPlayer.play("Idle")
 		isIdle = true
-		attackArea.monitoring = false
+		deActivateArea(attackArea)
 	if anim_name == "Block":
 		animationPlayer.play("Idle")
 		isIdle = true
-		blockArea.monitoring = false
+		deActivateArea(blockArea)
+
+
+func deActivateArea(area):
+	area.monitoring = false
+	area.monitorable = false
+
+func activateArea(area):
+	blockArea.monitoring = true
+	blockArea.monitorable = true
 
 
 func _on_attack_area_body_entered(body):

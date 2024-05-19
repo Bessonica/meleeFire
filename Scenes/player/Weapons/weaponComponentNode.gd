@@ -3,6 +3,9 @@ class_name WeaponComponentNode
 
 var weapons: Dictionary = {}
 var currentWeapon
+
+var blockStatus
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	for child in get_children():

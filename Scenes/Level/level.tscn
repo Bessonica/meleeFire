@@ -64,6 +64,7 @@ material = SubResource("StandardMaterial3D_pp6qf")
 
 [node name="Zombie" parent="World" instance=ExtResource("3_7ho3i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.364633, -5)
+activated = true
 playerPath = NodePath("../../PlayerSM")
 
 [node name="BallSpawner" parent="World" instance=ExtResource("5_myvgy")]

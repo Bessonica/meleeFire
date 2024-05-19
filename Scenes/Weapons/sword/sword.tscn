@@ -56,7 +56,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_0mwe8"]
 resource_name = "Block"
-length = 0.3
+length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -250,7 +250,7 @@ shape = SubResource("BoxShape3D_1qo6d")
 [node name="BlockArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.154217)
 collision_layer = 32
-collision_mask = 0
+collision_mask = 128
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BlockArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0124359, -0.00604248, -0.248901)
