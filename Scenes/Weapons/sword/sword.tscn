@@ -201,7 +201,7 @@ size = Vector3(0.05, 0.05, 0.05)
 size = Vector3(0.610742, 0.2, 0.495313)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_olnud"]
-size = Vector3(1.03464, 0.607056, 0.599365)
+size = Vector3(0.616653, 0.42775, 0.599365)
 
 [node name="Sword" type="Node3D"]
 script = ExtResource("1_jgum0")
@@ -251,12 +251,13 @@ shape = SubResource("BoxShape3D_1qo6d")
 [node name="BlockArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.154217)
 collision_layer = 32
-collision_mask = 128
+collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BlockArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0124359, -0.00604248, -0.248901)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00910757, -0.0109023, -0.248901)
 shape = SubResource("BoxShape3D_olnud")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="area_entered" from="BlockArea" to="." method="_on_block_area_area_entered"]
+[connection signal="body_entered" from="BlockArea" to="." method="_on_block_area_body_entered"]

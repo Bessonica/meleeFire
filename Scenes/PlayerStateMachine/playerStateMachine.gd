@@ -3,6 +3,7 @@ class_name Player
 
 @onready var weaponComponent = $Camera3D/WeaponComponentNode
 
+const hitStagger = 5.5
 
 func _process(delta):
 	$DebugPanelInterface.upsertDebugProperty("FPS", "%.2f" % (1.0/delta))
@@ -14,7 +15,10 @@ func hit(dir, isBlocked):
 	if !var_to_str(weaponComponent.sword.blockArea.monitoring) == "true":
 		print("got hit")
 		print("isBlocked = ", isBlocked)
+	if weaponComponent.sword.blockArea.has_overlapping_bodies():
+		pass
+	else:
+		velocity += dir * hitStagger
 	
-	
-	print("attack area monitorable = ", weaponComponent.sword.attackArea.monitorable, "\n", "attackArea monitoring = ", weaponComponent.sword.attackArea.monitoring)
-	print("blockArea monitorable = ", weaponComponent.sword.blockArea.monitorable, "\n", "blockArea monitoring = ", weaponComponent.sword.blockArea.monitoring)
+
+

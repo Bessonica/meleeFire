@@ -72,3 +72,7 @@ func _on_attack_area_body_entered(body):
 func _on_block_area_area_entered(area):
 	pass
 	#print("there is block")
+
+
+func _on_block_area_body_entered(body):
+	print("there is zombie")
