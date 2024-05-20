@@ -10,7 +10,7 @@ func _process(delta):
 	$DebugPanelInterface.upsertDebugProperty("State", $FiniteStateMachine.current_state.name.to_lower())
 	$DebugPanelInterface.upsertDebugProperty("block area monitoring", var_to_str(weaponComponent.sword.blockArea.monitoring))
 	$DebugPanelInterface.upsertDebugProperty("block area monitorable", var_to_str(weaponComponent.sword.blockArea.monitorable))
-
+	$DebugPanelInterface.upsertDebugProperty("Double jump = ", var_to_str($FiniteStateMachine.current_state.doubleJump))
 func hit(dir, isBlocked):
 	if !var_to_str(weaponComponent.sword.blockArea.monitoring) == "true":
 		print("got hit")

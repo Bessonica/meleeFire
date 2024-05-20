@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dfrpdqgyvpwu0"]
+[gd_scene load_steps=20 format=3 uid="uid://dfrpdqgyvpwu0"]
 
 [ext_resource type="Script" path="res://Scenes/PlayerStateMachine/playerStateMachine.gd" id="1_6m0qq"]
 [ext_resource type="PackedScene" uid="uid://dwsrdpgedv5g" path="res://Scenes/player/Weapons/weaponComponentNode.tscn" id="2_1ektm"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bo76ikklpm25k" path="res://Scenes/player/DebugPanelInterface/DebugPanelInterface.tscn" id="7_5pm2s"]
 [ext_resource type="Script" path="res://Scripts/FSM/SlidingState.gd" id="7_f0nin"]
 [ext_resource type="Script" path="res://Scripts/FSM/JumpState.gd" id="8_ger81"]
+[ext_resource type="Script" path="res://Scripts/FSM/FallingState.gd" id="10_vvgvw"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_082hr"]
 
@@ -388,6 +389,9 @@ script = ExtResource("7_f0nin")
 
 [node name="Jump" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("8_ger81")
+
+[node name="Falling" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("10_vvgvw")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

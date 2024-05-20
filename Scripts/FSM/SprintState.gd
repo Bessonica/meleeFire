@@ -25,6 +25,7 @@ class_name PlayerSprint
 func Enter(previousState):
 	isCurrent = true
 	speed = SPRINT_SPEED
+	#doubleJump = false
 	
 func Exit():
 	isCurrent = false
