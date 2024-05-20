@@ -14,7 +14,9 @@ var t_bob = 0.0
 const BASE_FOV = 75.0
 const FOV_CHANGE = 0.7
 
-var doubleJump: bool
+var doubleJump: bool = false
+#	set(value):
+#		print("double jump changed = ", value)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

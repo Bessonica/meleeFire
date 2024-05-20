@@ -9,10 +9,9 @@ class_name PlayerMove
 
 # Called when the node enters the scene tree for the first time.
 func Enter(previousState):
-	print("enntered move state")
+	#print("enntered move state")
 	speed = WALK_SPEED
 	isCurrent = true
-	doubleJump = false
 	
 func Exit():
 	isCurrent = false

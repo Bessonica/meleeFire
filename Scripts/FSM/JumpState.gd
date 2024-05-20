@@ -5,22 +5,20 @@ class_name PlayerJump
 #var doubleJump: bool
 
 func Enter(previousState):
-	doubleJump = false
+	print("jump acrivated doubleJump = ", doubleJump)
 	speed = WALK_SPEED
 	PLAYER.velocity.y += 4.5
 	ANIMATIONPLAYER.pause()
 
 
 func Exit():
-	if doubleJump:
-		doubleJump = true
-	else:
-		doubleJump = false
+	pass
 
 func InputInState(event: InputEvent):
 	if event.is_action_pressed("jump") and doubleJump == false:
 		PLAYER.velocity.y = 4.5
 		doubleJump = true
+		
 	
 	#	jump strength
 	if event.is_action_released("jump"):
