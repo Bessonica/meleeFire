@@ -19,6 +19,7 @@ func hit(dir, isBlocked):
 		pass
 	else:
 		velocity += dir * hitStagger
+		move_and_slide()
 	
 
 

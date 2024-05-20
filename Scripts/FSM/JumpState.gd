@@ -15,7 +15,9 @@ func InputInState(event: InputEvent):
 	if event.is_action_pressed("jump") and doubleJump == false:
 		PLAYER.velocity.y = 4.5
 		doubleJump = true
-
+	if event.is_action_released("jump"):
+		if PLAYER.velocity.y > 0:
+			PLAYER.velocity.y = PLAYER.velocity.y / 2.0
 
 func Update(_delta:float):
 	if not PLAYER.is_on_floor():
