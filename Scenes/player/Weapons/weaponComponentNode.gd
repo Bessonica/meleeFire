@@ -15,13 +15,23 @@ func _ready():
 			weapons[child.name.to_lower()] = child
 			child.visible = false
 			
-	currentWeapon = weapons["sword"]
+	currentWeapon = weapons["light"]
 	print(weapons.keys())
 	currentWeapon.visible = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+#	TODO
+# deactivate old weapon (exit function)
+# activate new weapon (enter function)
+func changeCurrentWeapon(name: String):
+	currentWeapon.visible = false
+	name = name.to_lower()
+	currentWeapon = weapons[name]
+
+
 
 #	TODO 	check  _unhandled_key_input  function
 func _unhandled_input(event):

@@ -62,6 +62,12 @@ material_override = SubResource("StandardMaterial3D_t3nu8")
 size = Vector3(10.7514, 0.336914, 12.2737)
 material = SubResource("StandardMaterial3D_pp6qf")
 
+[node name="CSGBox3D2" type="CSGBox3D" parent="World/NavigationRegion3D/CSGCombiner3D/CSGBox3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.127349, -0.836072, 12.4736)
+material_override = SubResource("StandardMaterial3D_t3nu8")
+size = Vector3(10.7514, 0.336914, 12.2737)
+material = SubResource("StandardMaterial3D_pp6qf")
+
 [node name="Zombie" parent="World" instance=ExtResource("3_7ho3i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.364633, -5)
 playerPath = NodePath("../../PlayerSM")

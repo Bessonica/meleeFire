@@ -7,7 +7,11 @@ class_name PlayerJump
 func Enter(previousState):
 	print("jump acrivated doubleJump = ", doubleJump)
 	speed = WALK_SPEED
-	PLAYER.velocity.y += 4.5
+	PLAYER.velocity.y += 5.5
+	
+	#	TODO weird change of double jump variable
+	#doubleJump = false
+	
 	ANIMATIONPLAYER.pause()
 
 
@@ -16,8 +20,9 @@ func Exit():
 
 func InputInState(event: InputEvent):
 	if event.is_action_pressed("jump") and doubleJump == false:
-		PLAYER.velocity.y = 4.5
-		doubleJump = true
+		pass
+	#	PLAYER.velocity.y = 4.5
+	#	doubleJump = true
 		
 	
 	#	jump strength

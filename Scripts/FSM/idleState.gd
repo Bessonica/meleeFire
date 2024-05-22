@@ -14,7 +14,7 @@ func Enter(previousState):
 	#	MOUSE_MODE_CAPTURED
 	isCurrent = true
 	doubleJump = false
-	print("idle entered doubleJump = ", doubleJump)
+	#print("idle entered doubleJump = ", doubleJump)
 	#animator.play("Idle")
 
 func InputInState(event: InputEvent):	

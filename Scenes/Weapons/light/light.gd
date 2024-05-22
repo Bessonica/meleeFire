@@ -3,6 +3,7 @@ class_name LightPlayer
 
 
 func _ready():
-	animationPlayer.play("idle")
+	pass
+	#animationPlayer.play("idle")
 
 
