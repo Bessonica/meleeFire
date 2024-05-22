@@ -6,8 +6,17 @@ class_name SwordPlayer
 @onready var attackArea = $AttackArea
 @onready var blockArea = $BlockArea
 
+
+
 var isIdle : bool
 # Called when the node enters the scene tree for the first time.
+
+func makeCurrent():
+	FSM.change_state(null, "Idle")
+
+func deactivateWeapon():
+	FSM.change_state(null, "NotSelected")
+
 func _ready():
 	attackArea.monitorable = false
 	attackArea.monitoring = false

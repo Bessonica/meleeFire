@@ -1,6 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://cjnbq1y66g5jv"]
+[gd_scene load_steps=17 format=3 uid="uid://cjnbq1y66g5jv"]
 
 [ext_resource type="Script" path="res://Scenes/Weapons/sword/Sword.gd" id="1_jgum0"]
+[ext_resource type="Script" path="res://Scripts/FSM/Weapons/FSMWeaponBasic.gd" id="2_ungbh"]
+[ext_resource type="Script" path="res://Scenes/Weapons/sword/NotSelectedState.gd" id="3_d8rwi"]
+[ext_resource type="Script" path="res://Scripts/FSM/Weapons/Sword/SwordIdleState.gd" id="3_vsulb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8c4h3"]
 
@@ -256,6 +259,15 @@ collision_mask = 4
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BlockArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00910757, -0.0109023, -0.498047)
 shape = SubResource("BoxShape3D_olnud")
+
+[node name="FiniteStateMachine" type="Node" parent="."]
+script = ExtResource("2_ungbh")
+
+[node name="NotSelected" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("3_d8rwi")
+
+[node name="Idle" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("3_vsulb")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]

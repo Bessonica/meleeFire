@@ -1,0 +1,4 @@
+extends WeaponBasicState
+class_name LightNotSelectedState
+
+

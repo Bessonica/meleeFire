@@ -13,15 +13,24 @@ func _ready():
 	for child in get_children():
 		if child is WeaponBasic:
 			weapons[child.name.to_lower()] = child
+			child.deactivateWeapon()
 			child.visible = false
 			
-	currentWeapon = weapons["light"]
-	print(weapons.keys())
+	currentWeapon = weapons["sword"]
+	currentWeapon.makeCurrent()
+	#print(weapons.keys())
 	currentWeapon.visible = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if Input.is_action_just_pressed("changeWeapon"):
+		if currentWeapon == weapons["sword"]:
+			changeCurrentWeapon("light")
+		else:
+			changeCurrentWeapon("sword")
+
+
+
 
 #	TODO
 # deactivate old weapon (exit function)
@@ -29,7 +38,10 @@ func _process(delta):
 func changeCurrentWeapon(name: String):
 	currentWeapon.visible = false
 	name = name.to_lower()
+	currentWeapon.deactivateWeapon()
 	currentWeapon = weapons[name]
+	currentWeapon.makeCurrent()
+	currentWeapon.visible = true
 
 
 

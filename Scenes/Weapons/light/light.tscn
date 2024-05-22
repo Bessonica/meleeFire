@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://cmhs6kjb5efm1"]
+[gd_scene load_steps=11 format=3 uid="uid://cmhs6kjb5efm1"]
 
 [ext_resource type="PackedScene" uid="uid://bgedutcghavay" path="res://Scenes/Weapons/weaponBasic/weaponBasic.tscn" id="1_1av7c"]
 [ext_resource type="Script" path="res://Scenes/Weapons/light/light.gd" id="2_8nq86"]
 [ext_resource type="Script" path="res://Scripts/FSM/Weapons/Light/LightIdleState.gd" id="3_6dpbv"]
+[ext_resource type="Script" path="res://Scenes/Weapons/light/NotSelectedState.gd" id="3_jnwcp"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_haomf"]
 size = Vector3(0.1, 0.1, 0.1)
@@ -98,5 +99,8 @@ libraries = {
 [node name="FiniteStateMachine" parent="." index="5" node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="FiniteStateMachine" index="0"]
+[node name="NotSelected" type="Node" parent="FiniteStateMachine" index="0"]
+script = ExtResource("3_jnwcp")
+
+[node name="Idle" type="Node" parent="FiniteStateMachine" index="1"]
 script = ExtResource("3_6dpbv")
