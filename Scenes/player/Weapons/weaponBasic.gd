@@ -5,12 +5,14 @@ class_name WeaponBasic
 @onready var animationPlayer = $AnimationPlayer
 @onready var FSM = $FiniteStateMachine
 
+@onready var attackArea = $AttackArea
+@onready var blockArea = $BlockArea
 
 func makeCurrent():
-	FSM.change_state(null, "Idle")
+	FSM.change_state(FSM.current_state, "Idle")
 
 func deactivateWeapon():
-	FSM.change_state(null, "NotSelected")
+	FSM.change_state(FSM.current_state, "NotSelected")
 
 
 func attack():

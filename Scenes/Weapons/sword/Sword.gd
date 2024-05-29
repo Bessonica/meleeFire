@@ -3,8 +3,7 @@ class_name SwordPlayer
 
 
 #@onready var animationPlayer = $AnimationPlayer
-@onready var attackArea = $AttackArea
-@onready var blockArea = $BlockArea
+
 
 
 
@@ -36,26 +35,30 @@ func _process(delta):
 
 
 func attack():
-	if isIdle:
-		activateArea(attackArea)
-		animationPlayer.play("Attack")
-		isIdle = false
+	pass
+	#FSM.change_state(FSM.current_state, "Attack")
+	#if isIdle:
+		#activateArea(attackArea)
+		#animationPlayer.play("Attack")
+		#isIdle = false
 
 func block():
-	if isIdle:
-		animationPlayer.play("Block")
-		activateArea(blockArea)
-		isIdle = false
+	pass
+	#if isIdle:
+	#	animationPlayer.play("Block")
+	#	activateArea(blockArea)
+	#	isIdle = false
 
 func _on_animation_player_animation_finished(anim_name):
-	if anim_name == "Attack":
-		animationPlayer.play("Idle")
-		isIdle = true
-		deActivateArea(attackArea)
-	if anim_name == "Block":
-		animationPlayer.play("Idle")
-		isIdle = true
-		deActivateArea(blockArea)
+	pass
+#	if anim_name == "Attack":
+#		animationPlayer.play("Idle")
+#		isIdle = true
+#		#deActivateArea(attackArea)
+#	if anim_name == "Block":
+#		animationPlayer.play("Idle")
+#		isIdle = true
+#		deActivateArea(blockArea)
 
 
 func deActivateArea(area):

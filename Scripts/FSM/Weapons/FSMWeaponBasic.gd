@@ -3,6 +3,8 @@ class_name FiniteStateMachineWeaponBasic
 
 
 @onready var weaponAnimationPlayer = $"../AnimationPlayer"
+@onready var attackArea = $"../AttackArea"
+@onready var blockArea = $"../BlockArea"
 
 var isCurrentWeapon: bool
 
@@ -11,6 +13,6 @@ func _ready():
 	super()
 	for child in get_children():
 		if child is WeaponBasicState:
-			child.setParamiters(weaponAnimationPlayer)
+			child.setParamiters(weaponAnimationPlayer, attackArea, blockArea)
 
 
