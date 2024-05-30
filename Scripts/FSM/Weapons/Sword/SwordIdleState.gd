@@ -4,6 +4,8 @@ class_name SwordIdleState
 # Called when the node enters the scene tree for the first time.
 func Enter(previousState):
 	animationPlayer.play("Idle")
+	#deActivateArea(blockArea)
+	#deActivateArea(attackArea)
 	#print("in idle sword")
 
 

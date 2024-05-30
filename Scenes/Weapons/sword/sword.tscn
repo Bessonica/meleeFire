@@ -257,6 +257,8 @@ shape = SubResource("BoxShape3D_1qo6d")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.154217)
 collision_layer = 32
 collision_mask = 4
+monitoring = false
+monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BlockArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00910757, -0.0109023, -0.498047)
@@ -282,5 +284,7 @@ script = ExtResource("6_fquir")
 [connection signal="animation_finished" from="AnimationPlayer" to="FiniteStateMachine/Attack" method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="FiniteStateMachine/Block" method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_entered" from="AttackArea" to="FiniteStateMachine/Attack" method="_on_attack_area_body_entered"]
 [connection signal="area_entered" from="BlockArea" to="." method="_on_block_area_area_entered"]
 [connection signal="body_entered" from="BlockArea" to="." method="_on_block_area_body_entered"]
+[connection signal="body_entered" from="BlockArea" to="FiniteStateMachine/Block" method="_on_block_area_body_entered"]

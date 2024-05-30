@@ -18,8 +18,8 @@ func deActivateArea(area):
 	area.monitorable = false
 
 func activateArea(area):
-	blockArea.monitoring = true
-	blockArea.monitorable = true
+	area.monitoring = true
+	area.monitorable = true
 
 
 # Called when the node enters the scene tree for the first time.

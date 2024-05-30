@@ -3,7 +3,7 @@ class_name SwordBlockState
 
 func Enter(previousState):
 	animationPlayer.play("Block")
-	print("entered attack")
+	print("entered block")
 	activateArea(blockArea)
 
 
@@ -21,3 +21,7 @@ func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "Block":
 		state_transition.emit(self, "Idle")
 		#deActivateArea(attackArea)
+
+
+func _on_block_area_body_entered(body):
+	pass # Replace with function body.

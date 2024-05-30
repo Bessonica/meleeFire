@@ -72,6 +72,7 @@ func hitFinished():
 	attackArea.monitoring = false
 
 func gotHit():
+	print("zombie got hit")
 	switchColor()
 
 func changeColor(color):
