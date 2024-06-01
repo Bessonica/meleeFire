@@ -37,6 +37,9 @@ func Update(_delta:float):
 	var input_dir = Input.get_vector("moveLeft", "moveRight", "moveForward", "moveBackward")
 	var direction = (PLAYER.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 
+	PLAYER.velocity.x = lerp(PLAYER.velocity.x, direction.x * speed, _delta * 3.0)
+	PLAYER.velocity.z = lerp(PLAYER.velocity.z, direction.z * speed, _delta * 3.0)
+
 	#fov
 	var velocity_clamped = clamp(PLAYER.velocity.length(), 0.5, SPRINT_SPEED * 2)
 	var target_fov = BASE_FOV + FOV_CHANGE * velocity_clamped
@@ -50,3 +53,5 @@ func Update(_delta:float):
 	
 	if PLAYER.is_on_floor():
 		state_transition.emit(self, "idle")
+	
+	
