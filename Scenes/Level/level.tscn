@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://dhup2gowdlh8j"]
+[gd_scene load_steps=13 format=3 uid="uid://dhup2gowdlh8j"]
 
 [ext_resource type="Script" path="res://Scenes/Level/level.gd" id="1_7tijt"]
 [ext_resource type="Texture2D" uid="uid://dge3iqvg3vuam" path="res://Res/kenney/PNG/Dark/texture_03.png" id="1_86hxg"]
 [ext_resource type="PackedScene" uid="uid://ctx0471wiosmh" path="res://Scenes/Enemy/zombie.tscn" id="3_7ho3i"]
 [ext_resource type="PackedScene" uid="uid://dfrpdqgyvpwu0" path="res://Scenes/PlayerStateMachine/playerStateMachine.tscn" id="5_1vv64"]
 [ext_resource type="PackedScene" uid="uid://clwb8spon5l8t" path="res://Scenes/Ball Spawner/ball_spawner.tscn" id="5_myvgy"]
+[ext_resource type="PackedScene" uid="uid://7k2ab28ucpie" path="res://Scenes/Enemy/ZombieFSM/zombieFsm.tscn" id="6_22lpk"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lr8n4"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -70,7 +71,6 @@ material = SubResource("StandardMaterial3D_pp6qf")
 
 [node name="Zombie" parent="World" instance=ExtResource("3_7ho3i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.364633, -5)
-activated = true
 playerPath = NodePath("../../PlayerSM")
 
 [node name="BallSpawner" parent="World" instance=ExtResource("5_myvgy")]
@@ -98,3 +98,6 @@ color = Color(0.772549, 0.27451, 0.321569, 0.439216)
 
 [node name="PlayerSM" parent="." instance=ExtResource("5_1vv64")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35822, 0)
+
+[node name="ZombieFSM" parent="." instance=ExtResource("6_22lpk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, 0)

@@ -1,0 +1,2 @@
+extends PlayerMovementState
+class_name deactivatedZombieState

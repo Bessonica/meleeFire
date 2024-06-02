@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://7k2ab28ucpie"]
+
+[ext_resource type="Script" path="res://Scenes/Enemy/ZombieFSM/FSMZombie.gd" id="1_c66i0"]
+[ext_resource type="Script" path="res://Scenes/Enemy/ZombieFSM/States/IdleZombieState.gd" id="2_m2xm2"]
+[ext_resource type="Script" path="res://Scenes/Enemy/ZombieFSM/States/deactivatedZombieState.gd" id="2_y0ytl"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_yfmwd"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gr2e8"]
+radius = 0.499994
+
+[node name="ZombieFSM" type="CharacterBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_yfmwd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_gr2e8")
+
+[node name="FiniteStateMachine" type="Node" parent="."]
+script = ExtResource("1_c66i0")
+
+[node name="Deactivated" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("2_y0ytl")
+
+[node name="Idle" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("2_m2xm2")
