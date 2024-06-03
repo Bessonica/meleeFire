@@ -84,3 +84,4 @@ changeWeapon={
 3d_physics/layer_4="csgBOX"
 3d_physics/layer_5="AttackArea"
 3d_physics/layer_6="BlockArea"
+3d_physics/layer_7="player"
