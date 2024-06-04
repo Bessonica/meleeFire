@@ -26,7 +26,7 @@ shape = SubResource("CapsuleShape3D_gr2e8")
 
 [node name="FiniteStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("1_c66i0")
-initial_state = NodePath("Idle")
+initial_state = NodePath("Deactivated")
 
 [node name="Deactivated" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("2_y0ytl")

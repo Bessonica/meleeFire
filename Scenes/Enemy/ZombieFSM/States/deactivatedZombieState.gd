@@ -1,2 +1,2 @@
-extends PlayerMovementState
+extends ZombieState
 class_name DeactivatedZombieState
