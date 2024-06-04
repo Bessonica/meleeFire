@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://7k2ab28ucpie"]
+[gd_scene load_steps=10 format=3 uid="uid://7k2ab28ucpie"]
 
 [ext_resource type="Script" path="res://Scenes/Enemy/ZombieFSM/FSMZombie.gd" id="1_c66i0"]
 [ext_resource type="Script" path="res://Scenes/Enemy/ZombieFSM/States/IdleZombieState.gd" id="2_m2xm2"]
 [ext_resource type="Script" path="res://Scenes/Enemy/ZombieFSM/States/deactivatedZombieState.gd" id="2_y0ytl"]
-[ext_resource type="Script" path="res://Scenes/Enemy/ZombieFSM/followZombieState.gd" id="4_70nfr"]
+[ext_resource type="Script" path="res://Scenes/Enemy/ZombieFSM/States/followZombieState.gd" id="4_70nfr"]
+[ext_resource type="Script" path="res://Scenes/Enemy/ZombieFSM/States/attackedZombieState.gd" id="5_kabfq"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_yfmwd"]
 
@@ -13,6 +14,10 @@ radius = 0.499994
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_xxugp"]
 height = 0.88853
 radius = 3.67145
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6bjut"]
+radius = 0.692336
+height = 2.12966
 
 [node name="ZombieFSM" type="CharacterBody3D"]
 
@@ -37,6 +42,9 @@ script = ExtResource("2_m2xm2")
 [node name="Follow" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("4_70nfr")
 
+[node name="Attacked" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("5_kabfq")
+
 [node name="DetectPlayer" type="Area3D" parent="."]
 collision_layer = 0
 collision_mask = 64
@@ -44,4 +52,12 @@ collision_mask = 64
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DetectPlayer"]
 shape = SubResource("CylinderShape3D_xxugp")
 
+[node name="HitBoxArea" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitBoxArea"]
+shape = SubResource("CapsuleShape3D_6bjut")
+
 [connection signal="body_entered" from="DetectPlayer" to="FiniteStateMachine/Idle" method="_on_detect_player_body_entered"]
+[connection signal="area_entered" from="HitBoxArea" to="FiniteStateMachine/Deactivated" method="_on_hit_box_area_area_entered"]
