@@ -101,3 +101,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35822, 0)
 
 [node name="ZombieFSM" parent="." instance=ExtResource("6_22lpk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.06629, 0.719632, 0)
+
+[node name="ZombieFSM2" parent="." instance=ExtResource("6_22lpk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8889, 1.17015, 5)

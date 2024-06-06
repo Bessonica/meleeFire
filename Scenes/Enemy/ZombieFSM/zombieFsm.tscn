@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://7k2ab28ucpie"]
+[gd_scene load_steps=27 format=3 uid="uid://7k2ab28ucpie"]
 
 [ext_resource type="Script" path="res://Scenes/Enemy/ZombieFSM/FSMZombie.gd" id="1_c66i0"]
 [ext_resource type="Script" path="res://Scenes/Enemy/ZombieFSM/States/IdleZombieState.gd" id="2_m2xm2"]
@@ -7,6 +7,9 @@
 [ext_resource type="Script" path="res://Scenes/Enemy/ZombieFSM/States/attackedZombieState.gd" id="5_kabfq"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_yfmwd"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_kg7o1"]
+size = Vector3(0.15, 0.8, 0.15)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gr2e8"]
 radius = 0.499994
@@ -19,10 +22,163 @@ radius = 3.67145
 radius = 0.692336
 height = 2.12966
 
+[sub_resource type="Animation" id="Animation_5rod5"]
+resource_name = "Attack"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D/Weapon Pivot:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.197414, 0.490961, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_g40sc"]
+resource_name = "Move"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.155474, 0, 0), Vector3(-0.268746, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_w03j2"]
+resource_name = "Idle"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.0809959, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_h3cdu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D/Weapon Pivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MeshInstance3D:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tqx0h"]
+_data = {
+"Attack": SubResource("Animation_5rod5"),
+"Idle": SubResource("Animation_w03j2"),
+"Move": SubResource("Animation_g40sc"),
+"RESET": SubResource("Animation_h3cdu")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2xcsa"]
+animation = &"Attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jab5k"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ugc70"]
+animation = &"Move"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f2gqn"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nm7tt"]
+advance_mode = 2
+advance_condition = &"targetInFocus"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w2ggc"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"inIdle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_blc34"]
+advance_mode = 2
+advance_condition = &"inRange"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j1tmf"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mtgvo"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"inIdle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w7kv6"]
+advance_mode = 2
+advance_condition = &"inRange"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_qoswp"]
+states/Attack/node = SubResource("AnimationNodeAnimation_2xcsa")
+states/Attack/position = Vector2(475, 254)
+states/End/position = Vector2(772, 114)
+states/Idle/node = SubResource("AnimationNodeAnimation_jab5k")
+states/Idle/position = Vector2(377, 114)
+states/Move/node = SubResource("AnimationNodeAnimation_ugc70")
+states/Move/position = Vector2(564, 114)
+states/Start/position = Vector2(185, 114)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_f2gqn"), "Idle", "Move", SubResource("AnimationNodeStateMachineTransition_nm7tt"), "Move", "Idle", SubResource("AnimationNodeStateMachineTransition_w2ggc"), "Move", "Attack", SubResource("AnimationNodeStateMachineTransition_blc34"), "Attack", "Move", SubResource("AnimationNodeStateMachineTransition_j1tmf"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_mtgvo"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_w7kv6")]
+graph_offset = Vector2(-254, 37)
+
 [node name="ZombieFSM" type="CharacterBody3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_yfmwd")
+
+[node name="Weapon Pivot" type="Node3D" parent="MeshInstance3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D/Weapon Pivot"]
+transform = Transform3D(0.939382, 0.342873, 0, -0.342873, 0.939382, 0, 0, 0, 1, 0.328792, 0.553386, -0.493841)
+mesh = SubResource("BoxMesh_kg7o1")
+skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_gr2e8")
@@ -31,7 +187,7 @@ shape = SubResource("CapsuleShape3D_gr2e8")
 
 [node name="FiniteStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("1_c66i0")
-initial_state = NodePath("Deactivated")
+initial_state = NodePath("Idle")
 
 [node name="Deactivated" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("2_y0ytl")
@@ -58,6 +214,21 @@ collision_mask = 16
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitBoxArea"]
 shape = SubResource("CapsuleShape3D_6bjut")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tqx0h")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tqx0h")
+}
+tree_root = SubResource("AnimationNodeStateMachine_qoswp")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/inIdle = false
+parameters/conditions/inRange = false
+parameters/conditions/targetInFocus = false
 
 [connection signal="body_entered" from="DetectPlayer" to="FiniteStateMachine/Idle" method="_on_detect_player_body_entered"]
 [connection signal="area_entered" from="HitBoxArea" to="FiniteStateMachine/Deactivated" method="_on_hit_box_area_area_entered"]

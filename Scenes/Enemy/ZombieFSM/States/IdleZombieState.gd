@@ -2,6 +2,9 @@ extends ZombieState
 class_name IdleZombieState
 
 
+func Enter(previousState):
+	pass
+	#animTree.set("parameters/conditions/inIdle", true)
 
 
 
