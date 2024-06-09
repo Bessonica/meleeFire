@@ -4,8 +4,9 @@ class_name SwordPlayer
 
 #@onready var animationPlayer = $AnimationPlayer
 
-
-
+@onready var labelAttackArea = $AttackAreaState
+var textOne
+var textTwo
 
 var isIdle : bool
 # Called when the node enters the scene tree for the first time.
@@ -20,7 +21,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	textOne = var_to_str(attackArea.monitorable)
+	textTwo = var_to_str(attackArea.monitoring)
+	labelAttackArea.text = "monitorable: " + textOne + "\n monitoring:" + textTwo
+	
 
 
 

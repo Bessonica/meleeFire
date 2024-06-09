@@ -6,7 +6,6 @@ const speed = 2.0
 
 
 func Enter(previousState):
-	
 	animTree.set("parameters/conditions/targetInFocus", true)
 
 

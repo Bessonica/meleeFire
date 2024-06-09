@@ -18,7 +18,7 @@ func Exit():
 
 func Update(_delta):
 	stateLabel.text = self.name
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(0.5).timeout
 	animTree.set("parameters/conditions/isAttacked", false)
 	state_transition.emit(self, "idle")
 	

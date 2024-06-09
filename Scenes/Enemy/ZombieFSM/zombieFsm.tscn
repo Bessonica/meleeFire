@@ -41,6 +41,34 @@ tracks/0/keys = {
 "values": [Vector3(0, 0, 0), Vector3(-0.197414, 0.490961, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_edoqn"]
+resource_name = "Attacked"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.435275, 0.435275),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.086865, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.435275, 0.435275),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.0709215)]
+}
+
 [sub_resource type="Animation" id="Animation_w03j2"]
 resource_name = "Idle"
 length = 3.0
@@ -111,34 +139,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_edoqn"]
-resource_name = "Attacked"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:rotation")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(0.435275, 0.435275),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.086865, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MeshInstance3D:position")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(0.435275, 0.435275),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.0709215)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tqx0h"]
@@ -241,7 +241,7 @@ shape = SubResource("CapsuleShape3D_gr2e8")
 
 [node name="FiniteStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("1_c66i0")
-initial_state = NodePath("Deactivated")
+initial_state = NodePath("Idle")
 
 [node name="Deactivated" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("2_y0ytl")

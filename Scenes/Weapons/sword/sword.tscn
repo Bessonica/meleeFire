@@ -211,6 +211,11 @@ size = Vector3(0.616653, 0.42775, 1.09766)
 [node name="Sword" type="Node3D"]
 script = ExtResource("1_jgum0")
 
+[node name="AttackAreaState" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.166998, -0.288152)
+pixel_size = 0.001
+text = "111"
+
 [node name="WeaponPivot" type="Node3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="WeaponPivot"]
